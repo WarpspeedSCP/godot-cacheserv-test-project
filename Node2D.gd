@@ -8,8 +8,10 @@ extends Node2D
 func _ready():
 	var f = FileAccessCached.new();
 	f.open("nbig.txt", File.READ, FileCacheManager.FIFO);
+	print(var2str(FileCacheManager.get_state()));
 	var g = FileAccessCached.new();
 	g.open("val.grind", File.READ, FileCacheManager.KEEP);
+	print(var2str(FileCacheManager.get_state()));
 	g.seek(21000);
 	print(var2str(FileCacheManager.get_state()));
 	print("read 100 bytes\n" + f.get_buffer(100).get_string_from_ascii());
