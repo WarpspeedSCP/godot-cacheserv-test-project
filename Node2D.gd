@@ -8,8 +8,10 @@ extends Node2D
 func _ready():
 	var f = FileAccessCached.new();
 	f.open("nbig.txt", File.READ, FileCacheManager.FIFO);
+	print(var2str(FileCacheManager.get_state()));
 	var g = FileAccessCached.new();
 	g.open("val.grind", File.READ, FileCacheManager.KEEP);
+	print(var2str(FileCacheManager.get_state()));
 	g.seek(21000);
 	print(var2str(FileCacheManager.get_state()));
 	print("read 100 bytes\n" + f.get_buffer(100).get_string_from_ascii());
@@ -22,14 +24,12 @@ func _ready():
 	print(var2str(FileCacheManager.get_state()));
 	print("\n\n3\n\n\n", f.get_buffer(6000));
 	print(var2str(FileCacheManager.get_state()));
-	print("\n\n4\n\n\n", f.get_buffer(6000));
+	print("\n\n4\n\n\n", f.get_buffer(6000).get_string_from_ascii());
 	print("\n\ncpp::::::    \n" + g.get_buffer(6000).get_string_from_ascii());
-	#for i in f.get_buffer(8000):
-	#	print(i);
-	#print(var2str(FileCacheManager.get_state()));
+	print(var2str(FileCacheManager.get_state()));
 	g.free();
 	f.free();
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
