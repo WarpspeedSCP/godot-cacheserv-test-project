@@ -4,6 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+
 func _ready():
 	var f = FileAccessCached.new();
 	f.open("nbig.txt", File.READ, FileCacheManager.FIFO);
