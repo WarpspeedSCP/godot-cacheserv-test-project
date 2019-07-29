@@ -4,7 +4,6 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	var f = FileAccessCached.new();
 	f.open("nbig.txt", File.READ, FileCacheManager.FIFO);
@@ -33,6 +32,14 @@ func _ready():
 	print(var2str(FileCacheManager.get_state()));
 	g.free();
 	f.free();
+
+	g = FileAccessCached.new();
+	g.open("nbig.txt", File.READ_WRITE, FileCacheManager.FIFO);
+	g.seek(35);
+	print("asdasd\n\n\njnsjfnsdfnsdnfdsf\n\n\nmsdkndsfjsd\n\n\n" + g.get_line());
+	g.store_line("ayyy lmao");
+	g.free();
+
 
 
 
