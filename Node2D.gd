@@ -36,11 +36,25 @@ func _ready():
 
 	g = FileAccessCached.new();
 	g.open("nbig.txt", File.READ_WRITE, FileCacheManager.FIFO);
+	print(var2str(FileCacheManager.get_state()));
 	g.seek(35);
 	print("asdasd\n\n\njnsjfnsdfnsdnfdsf\n\n\nmsdkndsfjsd\n\n\n" + g.get_line());
-	g.store_line("ayyy lmao");
+	print(var2str(FileCacheManager.get_state()));
+	f = FileAccessCached.new();
+	f.open("val.grind", File.READ_WRITE, FileCacheManager.KEEP);
+	f.seek_end();
+	f.store_line("this works.");
+	g.store_line("this works as expected");
 	g.free();
+	f.free();
 
+	# print(var2str(FileCacheManager.get_state()));
+
+	f = FileAccessCached.new();
+	f.open("out.log", File.READ_WRITE, FileCacheManager.FIFO)
+	# print(var2str(FileCacheManager.get_state()));
+	f.store_line("hi\nbie.");
+	f.free();
 
 
 
